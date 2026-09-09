@@ -1,0 +1,10 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# We don't copy package.json and run npm install here in the Dockerfile
+# because we want to map the host directory as a volume for hot reloading.
+# Instead, the entrypoint will run npm install if node_modules is missing,
+# and then start the dev server.
+
+CMD if [ ! -d "node_modules" ]; then npm install; fi && npm run dev
