@@ -74,7 +74,7 @@ return new class extends Migration
             $table->index('published_at');
             $table->index('is_featured');
             $table->index('is_breaking');
-            $table->fullText(['title', 'summary']);
+            // $table->fullText(['title', 'summary']);
         });
 
         // Saved news articles

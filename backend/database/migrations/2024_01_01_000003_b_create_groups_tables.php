@@ -32,7 +32,7 @@ return new class extends Migration
             $table->index('owner_id');
             $table->index('type');
             $table->index('game_id');
-            $table->fullText(['name', 'description']);
+            // $table->fullText(['name', 'description']);
         });
 
         // Group members (with roles)

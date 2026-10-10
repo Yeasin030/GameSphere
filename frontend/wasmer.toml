@@ -1,19 +1,23 @@
 [package]
-name = "yeasinarafat5331/frontend"
-version = "0.1.0"
-description = "Description for package frontend"
+name = "yeasinarafat5331/gamesphere-frontend"
+version = "0.1.5"
+description = "GameSphere Frontend"
 
-# See more keys and definitions at https://docs.wasmer.io/registry/manifest
+[dependencies]
+"wasmer/static-web-server" = "^1"
 
-[[module]]
-name = "frontend"
-source = "frontend.wasm"
-abi = "wasi"
-
-[module.interfaces]
-wasi = "0.1.0-unstable"
+[fs]
+public = "out"
 
 [[command]]
-name = "frontend"
-module = "frontend"
-runner = "wasi"
+name = "script"
+module = "wasmer/static-web-server:webserver"
+runner = "https://webc.org/runner/wasi"
+
+[command.annotations.wasi]
+env = [
+  "SERVER_PORT=8080",
+  "SERVER_ROOT=/public",
+  "SERVER_ERROR_PAGE=/public/404.html",
+  "SERVER_FALLBACK_PAGE=/public/index.html"
+]

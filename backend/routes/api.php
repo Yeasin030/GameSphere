@@ -86,22 +86,17 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
 
     // ─── Public read routes ─────────────────────────────────────────
     Route::get('/games', [GameController::class, 'index'])->name('games.index');
-    Route::post('/games', [GameController::class, 'store'])->name('games.store');
     Route::get('/games/{slug}', [GameController::class, 'show'])->name('games.show');
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-    Route::post('/news', [NewsController::class, 'store'])->name('news.store');
     Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
     Route::get('/hashtags/{hashtag}', [HashtagController::class, 'show'])->name('hashtags.show');
     Route::get('/hashtags/trending', [HashtagController::class, 'trending'])->name('hashtags.trending');
 
     // Groups & Communities
     Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
-    Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
     Route::get('/groups/{slug}', [GroupController::class, 'show'])->name('groups.show');
-    Route::post('/groups/{group}/join', [GroupController::class, 'join'])->name('groups.join');
-    Route::post('/groups/{group}/leave', [GroupController::class, 'leave'])->name('groups.leave');
 
-    // Public feed tabs, explore, stories, and posting (open to all gamers)
+    // Public feed tabs, explore, stories, and posting
     Route::get('/feed', [FeedController::class, 'index'])->name('feed.index');
     Route::get('/feed/explore', [FeedController::class, 'explore'])->name('feed.explore');
     Route::get('/feed/trending', [FeedController::class, 'trending'])->name('feed.trending');
@@ -111,61 +106,39 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
     Route::get('/feed/latest', [FeedController::class, 'latest'])->name('feed.latest');
     Route::get('/stories', [StoryController::class, 'index'])->name('stories.public_index');
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-    Route::post('/posts', [PostController::class, 'store'])->name('posts.public_store');
-    Route::post('/posts/{post}/react', [ReactionController::class, 'reactToPost'])->name('posts.react');
-    Route::delete('/posts/{post}/react', [ReactionController::class, 'unreactPost'])->name('posts.unreact');
-    Route::post('/posts/{post}/save', [PostController::class, 'save'])->name('posts.save');
-    Route::delete('/posts/{post}/save', [PostController::class, 'unsave'])->name('posts.unsave');
     Route::get('/posts/{post}/comments', [CommentController::class, 'index'])->name('posts.comments.index');
-    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
-    Route::post('/stories', [StoryController::class, 'store'])->name('stories.public_store');
 
     // Public user profiles & discovery
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/me', [UserController::class, 'me'])->name('me.public');
-    Route::put('/me', [UserController::class, 'update'])->name('me.update.public');
     Route::get('/users/{username}', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{username}/posts', [UserController::class, 'posts'])->name('users.posts');
     Route::get('/users/{username}/games', [UserController::class, 'games'])->name('users.games');
     Route::get('/users/{username}/friends', [UserController::class, 'friends'])->name('users.friends');
     Route::get('/users/{username}/achievements', [AchievementController::class, 'userAchievements'])->name('users.achievements');
-    Route::post('/users/{user}/follow', [FollowController::class, 'follow'])->name('users.follow.public');
-    Route::delete('/users/{user}/follow', [FollowController::class, 'unfollow'])->name('users.unfollow.public');
-    // Notifications (supports authenticated users and demo user fallback)
+    
+    // Notifications (Read Only)
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
-    Route::post('/notifications/send-test', [NotificationController::class, 'sendTest'])->name('notifications.test');
-    Route::post('/notifications/{id}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
-    Route::post('/notifications/read-all', [NotificationController::class, 'markAllRead'])->name('notifications.read.all');
-    Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
     Route::get('/notifications/unread-count', [NotificationController::class, 'unreadCount'])->name('notifications.count');
-    Route::put('/notifications/preferences', [NotificationController::class, 'updatePreferences'])->name('notifications.preferences');
 
-    // Videos (public discovery & interaction with demo user fallback)
+    // Videos
     Route::get('/videos', [VideoController::class, 'index'])->name('videos.index');
     Route::get('/videos/{video}', [VideoController::class, 'show'])->name('videos.show');
-    Route::post('/videos', [VideoController::class, 'store'])->name('videos.store');
-    Route::post('/videos/{video}/like', [VideoController::class, 'like'])->name('videos.like');
-    Route::post('/videos/{video}/view', [VideoController::class, 'recordView'])->name('videos.view');
 
-    // Reels (public discovery & interaction with demo user fallback)
+    // Reels
     Route::get('/reels', [ReelController::class, 'index'])->name('reels.index');
     Route::get('/reels/{reel}', [ReelController::class, 'show'])->name('reels.show');
-    Route::post('/reels', [ReelController::class, 'store'])->name('reels.store');
-    Route::post('/reels/{reel}/like', [ReelController::class, 'like'])->name('reels.like');
-    Route::post('/reels/{reel}/view', [ReelController::class, 'recordView'])->name('reels.view');
 
-    // Tournaments (public discovery, registration, and brackets with demo fallback)
+    // Tournaments
     Route::get('/tournaments', [TournamentController::class, 'index'])->name('tournaments.index');
-    Route::get('/tournaments/my', [TournamentController::class, 'myTournaments'])->name('tournaments.my');
     Route::get('/tournaments/{tournament}', [TournamentController::class, 'show'])->name('tournaments.show');
     Route::get('/tournaments/{tournament}/bracket', [TournamentController::class, 'bracket'])->name('tournaments.bracket');
     Route::get('/tournaments/{tournament}/participants', [TournamentController::class, 'participants'])->name('tournaments.participants');
-    Route::post('/tournaments', [TournamentController::class, 'store'])->name('tournaments.store');
-    Route::post('/tournaments/{tournament}/register', [TournamentController::class, 'register'])->name('tournaments.register');
-    Route::delete('/tournaments/{tournament}/register', [TournamentController::class, 'unregister'])->name('tournaments.unregister');
 
     // ─── Authenticated routes ───────────────────────────────────────
     Route::middleware(['auth:sanctum'])->group(function () {
+        
+        Route::get('/me', [UserController::class, 'me'])->name('me');
+        Route::put('/me', [UserController::class, 'update'])->name('me.update');
 
         // Auth management
         Route::prefix('auth')->name('auth.')->group(function () {
@@ -186,8 +159,23 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
             Route::get('/connected-accounts', [OAuthController::class, 'connectedAccounts'])->name('oauth.connected');
             Route::delete('/connected-accounts/{id}', [OAuthController::class, 'disconnect'])->name('oauth.disconnect');
         });
+        
+        // Notifications
+        Route::post('/notifications/send-test', [NotificationController::class, 'sendTest'])->name('notifications.test');
+        Route::post('/notifications/{id}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
+        Route::post('/notifications/read-all', [NotificationController::class, 'markAllRead'])->name('notifications.read.all');
+        Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+        Route::put('/notifications/preferences', [NotificationController::class, 'updatePreferences'])->name('notifications.preferences');
 
         // Posts extra actions
+        Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+        Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+        Route::post('/posts/{post}/react', [ReactionController::class, 'reactToPost'])->name('posts.react');
+        Route::delete('/posts/{post}/react', [ReactionController::class, 'unreactPost'])->name('posts.unreact');
+        Route::post('/posts/{post}/save', [PostController::class, 'save'])->name('posts.save');
+        Route::delete('/posts/{post}/save', [PostController::class, 'unsave'])->name('posts.unsave');
+        Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+        
         Route::post('/posts/{post}/share', [PostController::class, 'share'])->name('posts.share');
         Route::get('/saved-posts', [PostController::class, 'savedPosts'])->name('posts.saved');
         Route::post('/posts/{post}/bookmark', [\App\Http\Controllers\Api\V1\BookmarkController::class, 'toggle'])->name('posts.bookmark.toggle');
@@ -197,6 +185,8 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
         Route::post('/comments/{comment}/react', [ReactionController::class, 'reactToComment'])->name('comments.react');
 
         // Follow
+        Route::post('/users/{user}/follow', [FollowController::class, 'follow'])->name('users.follow');
+        Route::delete('/users/{user}/follow', [FollowController::class, 'unfollow'])->name('users.unfollow');
         Route::get('/users/{username}/followers', [FollowController::class, 'followers'])->name('users.followers');
         Route::get('/users/{username}/following', [FollowController::class, 'following'])->name('users.following');
 
@@ -217,6 +207,7 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
         Route::delete('/users/{user}/mute', [BlockController::class, 'unmute'])->name('users.unmute');
 
         // Stories
+        Route::post('/stories', [StoryController::class, 'store'])->name('stories.store');
         Route::get('/stories/{story}', [StoryController::class, 'show'])->name('stories.show');
         Route::delete('/stories/{story}', [StoryController::class, 'destroy'])->name('stories.destroy');
         Route::post('/stories/{story}/view', [StoryController::class, 'recordView'])->name('stories.view');
@@ -224,13 +215,20 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
         Route::get('/my-stories', [StoryController::class, 'myStories'])->name('stories.mine');
 
         // Reels (author management)
+        Route::post('/reels', [ReelController::class, 'store'])->name('reels.store');
+        Route::post('/reels/{reel}/like', [ReelController::class, 'like'])->name('reels.like');
+        Route::post('/reels/{reel}/view', [ReelController::class, 'recordView'])->name('reels.view');
         Route::delete('/reels/{reel}', [ReelController::class, 'destroy'])->name('reels.destroy');
 
         // Videos (author management)
+        Route::post('/videos', [VideoController::class, 'store'])->name('videos.store');
+        Route::post('/videos/{video}/like', [VideoController::class, 'like'])->name('videos.like');
+        Route::post('/videos/{video}/view', [VideoController::class, 'recordView'])->name('videos.view');
         Route::put('/videos/{video}', [VideoController::class, 'update'])->name('videos.update');
         Route::delete('/videos/{video}', [VideoController::class, 'destroy'])->name('videos.destroy');
 
         // Games (authenticated extras)
+        Route::post('/games', [GameController::class, 'store'])->name('games.store');
         Route::get('/game-recommendations', [GameController::class, 'recommendations'])->name('games.recommendations');
         Route::get('/games/trending', [GameController::class, 'trending'])->name('games.trending');
 
@@ -242,6 +240,8 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
         Route::post('/my-games/reorder', [UserGameController::class, 'reorder'])->name('user.games.reorder');
 
         // Groups (authenticated extras)
+        Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
+        Route::post('/groups/{group}/join', [GroupController::class, 'join'])->name('groups.join');
         Route::put('/groups/{group}', [GroupController::class, 'update'])->name('groups.update');
         Route::delete('/groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
         Route::delete('/groups/{group}/leave', [GroupController::class, 'leave'])->name('groups.leave');
@@ -255,9 +255,20 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
         Route::get('/my-groups', [GroupController::class, 'myGroups'])->name('groups.mine');
 
         // News (authenticated extras)
+        Route::post('/news', [NewsController::class, 'store'])->name('news.store');
         Route::post('/news/{article}/save', [NewsController::class, 'save'])->name('news.save');
         Route::delete('/news/{article}/save', [NewsController::class, 'unsave'])->name('news.unsave');
         Route::get('/saved-news', [NewsController::class, 'savedArticles'])->name('news.saved');
+        
+        // Tournaments
+        Route::post('/tournaments', [TournamentController::class, 'store'])->name('tournaments.store');
+        Route::post('/tournaments/{tournament}/register', [TournamentController::class, 'register'])->name('tournaments.register');
+        Route::delete('/tournaments/{tournament}/register', [TournamentController::class, 'unregister'])->name('tournaments.unregister');
+        Route::get('/tournaments/my', [TournamentController::class, 'myTournaments'])->name('tournaments.my');
+        Route::post('/tournaments/{tournament}/check-in', [TournamentController::class, 'checkIn'])->name('tournaments.checkin');
+        Route::post('/tournaments/{tournament}/matches/{match}/result', [TournamentController::class, 'submitResult'])->name('tournaments.match.result');
+        Route::post('/tournaments/{tournament}/generate-brackets', [TournamentController::class, 'generateBrackets'])->name('tournaments.generate-brackets');
+
 
         // Conversations / Messenger
         Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations.index');
@@ -282,10 +293,6 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
         Route::post('/messages/{message}/react', [MessageController::class, 'react'])->name('messages.react');
         Route::post('/messages/{message}/forward', [MessageController::class, 'forward'])->name('messages.forward');
 
-        // Tournaments (host / match management)
-        Route::post('/tournaments/{tournament}/check-in', [TournamentController::class, 'checkIn'])->name('tournaments.checkin');
-        Route::post('/tournaments/{tournament}/matches/{match}/result', [TournamentController::class, 'submitResult'])->name('tournaments.match.result');
-        Route::post('/tournaments/{tournament}/generate-brackets', [TournamentController::class, 'generateBrackets'])->name('tournaments.generate-brackets');
 
         // Search
         Route::get('/search', [SearchController::class, 'index'])->name('search.index');

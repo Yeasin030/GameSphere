@@ -1,0 +1,104 @@
+# GameSphere Documentation
+
+GameSphere is a modern, full-stack gaming social network and community platform designed to connect gamers, manage communities, and stay up-to-date with gaming news and tournaments.
+
+---
+
+## 🛠️ Tech Stack & Ecosystem
+
+The GameSphere ecosystem is divided into multiple clients connected to a central backend API.
+
+### 1. Backend (API Server)
+Located in the `backend/` directory, this is the core engine of the platform.
+*   **Framework**: Laravel 11 (PHP 8.2+)
+*   **Database**: MySQL (configured in `docker-compose.yml`)
+*   **Authentication**: Laravel Sanctum (Bearer Token based) for cross-platform API auth.
+*   **Role & Permissions**: Spatie Laravel-Permission
+*   **Architecture**: RESTful API design.
+
+### 2. Frontend (Web Application)
+Located in the `frontend/` directory, this is the browser-based client.
+*   **Framework**: Next.js 14 (Using the App Router `src/app/`)
+*   **Language**: TypeScript & React 18
+*   **Styling**: Tailwind CSS & Lucide React Icons
+*   **State Management**: Zustand
+*   **HTTP Client**: Axios with centralized Bearer token interceptor
+
+### 3. Mobile Client
+Located in the `mobile/` directory, designed for iOS and Android.
+*   **Framework**: Flutter (Dart) 
+*   **Configuration**: Defined in `pubspec.yaml`
+
+### 4. Desktop Client
+Located in the `desktop/` directory, providing native desktop experiences.
+*   **Framework**: Tauri (Rust-backed lightweight desktop framework)
+*   **Frontend integration**: Integrated with a web layer (via `index.html` and `src/`)
+
+### 5. DevOps & Deployment
+*   **Containerization**: Docker & `docker-compose.yml` for database (MySQL) and potentially local environments.
+*   **Scripts**: Pre-made batch and powershell scripts (`start_local.bat`, `start_local_no_docker.bat`, `deploy.bat`) for easy environment bootstrapping.
+
+---
+
+## 📂 Core Features & Database Models
+
+By analyzing the Laravel backend models (`backend/app/Models`), here is a breakdown of everything that runs inside this application:
+
+### 👤 Users & Identity
+*   **User (`User.php`)**: The core entity. Users have automated name-to-username generation.
+*   **SocialAccount (`SocialAccount.php`)**: Handles OAuth/Social logins (e.g., Discord, Google, Steam).
+*   **Settings (`UserPrivacySetting.php`, `UserNotificationPreference.php`)**: Extensive controls over who can see a user's profile and what notifications they receive.
+
+### 💬 Social Interactions
+*   **Friendships & Followers (`Friendship.php`, `Follower.php`)**: Directed graph and mutual connections for gamers. Handled by `FriendshipGraphService`.
+*   **Chat System (`Message.php`, `Conversation.php`)**: Direct messaging and group messaging capabilities (`MessageService`).
+
+### 📝 Content & Feed
+*   **Posts (`Post.php`)**: Users can create gaming updates, attach rich media, and share content.
+*   **Engagement (`Comment.php`, `Reaction.php`, `PostReaction.php`, `Bookmark.php`)**: Like, comment, react, and save posts to personal bookmarks.
+*   **Rich Media (`Story.php`, `Reel.php`, `Video.php`)**: Support for modern social media formats like 24-hour stories, short-form reels, and long-form video content.
+
+### 🎮 Gaming Hub
+*   **Games DB (`Game.php`, `Platform.php`, `Genre.php`)**: A comprehensive database of video games, their genres, and the platforms they are available on.
+*   **Game Activity (`GameLog.php`)**: Tracking user play sessions and activity. 
+*   **Monetization/Links (`GameStoreLink.php`)**: Links to purchase or download games from external stores (Steam, Epic, etc.).
+*   **Achievements (`Achievement.php`)**: Gamification layer tracking user milestones or in-game trophies.
+
+### 🛡️ Communities (Clans/Guilds)
+*   **Groups (`Group.php`)**: Users can join and create gaming clans, guilds, and group spaces to coordinate play.
+
+### 🏆 Esports & Tournaments
+*   **Tournaments (`Tournament.php`)**: System to host and manage gaming competitions.
+*   **Teams & Matches (`TournamentTeam.php`, `TournamentMatch.php`, `TournamentRegistration.php`)**: End-to-end management for team registrations, brackets, and match reporting.
+
+### 📰 News & Industry Updates
+*   **News Engine (`NewsArticle.php`, `NewsCategory.php`, `NewsSource.php`)**: A dedicated real-time gaming industry news feed, categorized by sources and topics.
+
+### ⚙️ System & Moderation
+*   **Notifications (`Notification.php`)**: System alerts for user activity (likes, messages, tournament updates).
+*   **Moderation (`Report.php`)**: System for users to report toxic behavior or inappropriate content.
+*   **Audit (`AuditLog.php`)**: Security tracking for sensitive actions performed on the platform.
+
+---
+
+## 🗺️ Next.js Web Structure
+
+The Web frontend (`frontend/src/app`) uses the modern App Router architecture, separated into distinct user flows:
+*   `/(auth)`: Handles login, registration, and onboarding flows.
+*   `/(main)`: The core application layout containing the Feed, Gaming Hub, Tournaments, etc.
+*   `/admin`: A dedicated portal for staff/moderators to manage the platform.
+*   `/welcome`: Landing page or unauthenticated marketing page.
+*   `/video`: Dedicated section for the video/reels player interface.
+
+## 🚀 How to Run Locally
+
+Based on the root scripts and documentation, you can boot the project easily:
+
+**1. Using the provided scripts (Windows):**
+You can just double-click `start_local.bat` or `start_local_no_docker.bat` in the root folder to boot both the frontend and backend simultaneously.
+
+**2. Manual Boot:**
+*   **Backend**: `cd backend && composer install`, copy `.env.example` to `.env`, run `php artisan key:generate && php artisan migrate`, then `php artisan serve`.
+*   **Frontend**: `cd frontend && npm install`, copy `.env.example` to `.env.local`, then `npm run dev`.
+
+The web app will be available at `http://localhost:3000` and the API at `http://127.0.0.1:8000`.

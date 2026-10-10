@@ -12,6 +12,7 @@ class NewsArticle extends Model
 {
     use HasFactory, SoftDeletes;
 
+
     protected $fillable = [
         'source_id',
         'game_id',

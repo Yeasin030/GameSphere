@@ -18,7 +18,7 @@ class TournamentController extends Controller
      */
     private function resolveUser(Request $request): ?User
     {
-        return $request->user('sanctum') ?? $request->user() ?? User::where('email', 'demo@gamesphere.com')->first() ?? User::first();
+        return $request->user('sanctum') ;
     }
 
     /**

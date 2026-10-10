@@ -2,7 +2,11 @@
     "name": "gamesphere/backend",
     "type": "project",
     "description": "GameSphere – Gaming Social Platform API",
-    "keywords": ["gaming", "social", "laravel"],
+    "keywords": [
+        "gaming",
+        "social",
+        "laravel"
+    ],
     "license": "proprietary",
     "require": {
         "php": "^8.3",

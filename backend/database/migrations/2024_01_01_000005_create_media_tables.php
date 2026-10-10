@@ -78,7 +78,7 @@ return new class extends Migration
             $table->index('status');
             $table->index('visibility');
             $table->index('category');
-            $table->fullText(['title', 'description']);
+            // $table->fullText(['title', 'description']);
         });
 
         // Video views (analytics)

@@ -12,7 +12,7 @@ class BookmarkController extends Controller
 {
     public function index(Request $request)
     {
-        $user = $request->user('sanctum') ?? $request->user() ?? \App\Models\User::first();
+        $user = $request->user();
         $bookmarks = Bookmark::with(['post.user', 'post.game'])
             ->where('user_id', $user->id)
             ->latest()
@@ -28,7 +28,7 @@ class BookmarkController extends Controller
 
     public function toggle(Request $request, Post $post)
     {
-        $user = $request->user('sanctum') ?? $request->user() ?? \App\Models\User::first();
+        $user = $request->user();
         $bookmark = Bookmark::where('user_id', $user->id)
             ->where('post_id', $post->id)
             ->first();

@@ -124,6 +124,9 @@ class DatabaseSeeder extends Seeder
             );
         }
 
+        $this->call(GameSeeder::class);
+        $this->call(GroupSeeder::class);
+        $this->call(NewsSeeder::class);
         $this->call(NotificationSeeder::class);
         $this->call(VideoSeeder::class);
         $this->call(ReelSeeder::class);

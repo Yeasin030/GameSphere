@@ -164,7 +164,13 @@ export default function GamesDiscoveryPage() {
 
     if (selectedPlatform !== 'All') {
       const p = selectedPlatform.toLowerCase();
-      const hasPlatform = game.platforms?.some((item) => item.name.toLowerCase().includes(p));
+      const hasPlatform = game.platforms?.some((item) => {
+        const pName = item.name.toLowerCase();
+        if (p === 'pc' && (pName.includes('pc') || pName.includes('windows') || pName.includes('mac') || pName.includes('linux'))) return true;
+        if (p === 'mobile' && (pName.includes('mobile') || pName.includes('android') || pName.includes('ios'))) return true;
+        if (p === 'switch' && (pName.includes('switch') || pName.includes('nintendo'))) return true;
+        return pName.includes(p);
+      });
       if (!hasPlatform) return false;
     }
 
@@ -502,7 +508,7 @@ export default function GamesDiscoveryPage() {
 
             <div className="relative h-56 rounded-xl overflow-hidden bg-black">
               <img
-                src={selectedGame.cover_image || selectedGame.cover_image_url}
+                src={selectedGame.cover_image || selectedGame.cover_image_url || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80'}
                 alt=""
                 className="w-full h-full object-cover"
               />

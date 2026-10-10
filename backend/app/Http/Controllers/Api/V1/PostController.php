@@ -35,7 +35,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request): JsonResponse
     {
-        $user = $request->user('sanctum') ?? $request->user() ?? \App\Models\User::first();
+        $user = $request->user();
 
         $imagePath = null;
         if ($request->hasFile('image')) {

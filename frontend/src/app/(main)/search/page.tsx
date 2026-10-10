@@ -100,7 +100,7 @@ function SearchContent() {
         {/* Empty State */}
         {!loading && query && results.users?.length === 0 && results.games?.length === 0 && (
           <div className="text-center text-muted-foreground py-12">
-            No results found for "{query}"
+            No results found for &quot;{query}&quot;
           </div>
         )}
       </div>

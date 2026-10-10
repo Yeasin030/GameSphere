@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('trending_since')->nullable();
             $table->timestamps();
 
-            $table->fullText('name');
+            // $table->fullText('name');
         });
 
         // Posts
@@ -57,7 +57,7 @@ return new class extends Migration
             $table->index('privacy');
             $table->index(['is_hidden', 'deleted_at', 'created_at']);
             $table->index('rank_score');
-            $table->fullText('content');
+            // $table->fullText('content');
         });
 
         // Post media attachments

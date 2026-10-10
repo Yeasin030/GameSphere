@@ -69,7 +69,7 @@ class GroupController extends Controller
         ]);
 
         // Pick owner (authenticated user or fallback to first user)
-        $owner = $request->user() ?? User::first();
+        $owner = $request->user() ;
         if (!$owner) {
             return response()->json(['message' => 'User not found to assign as group owner.'], 400);
         }
@@ -95,8 +95,9 @@ class GroupController extends Controller
 
         // Attach owner as member
         $group->members()->attach($owner->id, [
-            'role'   => 'owner',
-            'status' => 'approved',
+            'role'      => 'owner',
+            'status'    => 'approved',
+            'joined_at' => now(),
         ]);
 
         return response()->json([
@@ -122,7 +123,7 @@ class GroupController extends Controller
      */
     public function join(Request $request, Group $group): JsonResponse
     {
-        $user = $request->user() ?? User::first();
+        $user = $request->user() ;
         if (!$user) {
             return response()->json(['message' => 'User required to join group.'], 401);
         }
@@ -136,8 +137,9 @@ class GroupController extends Controller
         }
 
         $group->members()->attach($user->id, [
-            'role'   => 'member',
-            'status' => $group->require_approval ? 'pending' : 'approved',
+            'role'      => 'member',
+            'status'    => $group->require_approval ? 'pending' : 'approved',
+            'joined_at' => now(),
         ]);
 
         $group->increment('members_count');
@@ -154,7 +156,7 @@ class GroupController extends Controller
      */
     public function leave(Request $request, Group $group): JsonResponse
     {
-        $user = $request->user() ?? User::first();
+        $user = $request->user() ;
         if (!$user) {
             return response()->json(['message' => 'User required to leave group.'], 401);
         }

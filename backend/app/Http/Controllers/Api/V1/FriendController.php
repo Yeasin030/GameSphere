@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class FriendController extends Controller
 {
+
     /**
      * Send a friend request.
      */
@@ -150,9 +151,8 @@ class FriendController extends Controller
      */
     public function suggestions(Request $request): JsonResponse
     {
-        // Simple suggestion: users with most friends, not already friends with currentUser
         $user = $request->user();
-        
+
         $friendships = Friendship::where('status', 'accepted')
             ->where(function ($q) use ($user) {
                 $q->where('requester_id', $user->id)->orWhere('recipient_id', $user->id);
@@ -167,7 +167,7 @@ class FriendController extends Controller
             ->active()
             ->limit(10)
             ->get();
-
+            
         return response()->json([
             'data' => UserResource::collection($suggestions)
         ]);

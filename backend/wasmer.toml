@@ -1,7 +1,7 @@
 [package]
-name = "yeasinarafat5331/gamesphere-backend"
-version = "0.1.2"
-description = "Gamesphere Laravel Backend"
+name = "yeasinarafat5331/gamesphere"
+version = "0.1.19"
+description = "Laravel Application on Wasmer Edge"
 
 [dependencies]
 "php/php" = "^8.3.4"
@@ -15,4 +15,4 @@ module = "php/php:php"
 runner = "wasi"
 
 [command.annotations.wasi]
-main-args = ["-t", "/app/public", "-S", "localhost:8080"]
+main-args = ["-t", "/app/public", "-S", "0.0.0.0:8080", "/app/server.php"]

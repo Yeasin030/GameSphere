@@ -1,0 +1,170 @@
+[
+    {
+        "id": 34,
+        "slug": "beast-of-reincarnation",
+        "title": "Beast of Reincarnation",
+        "name": "Beast of Reincarnation",
+        "developer": null,
+        "publisher": null,
+        "cover_image": "https:\/\/media.rawg.io\/media\/games\/bf4\/bf449e2f579f618cc43ffebf0ac3a472.jpg",
+        "cover_image_url": "https:\/\/media.rawg.io\/media\/games\/bf4\/bf449e2f579f618cc43ffebf0ac3a472.jpg",
+        "background_image": "https:\/\/media.rawg.io\/media\/games\/bf4\/bf449e2f579f618cc43ffebf0ac3a472.jpg",
+        "banner_image_url": "https:\/\/media.rawg.io\/media\/games\/bf4\/bf449e2f579f618cc43ffebf0ac3a472.jpg",
+        "description": "An exciting game available on multiple platforms.",
+        "short_description": "A new game.",
+        "genres": [
+            {
+                "id": 1,
+                "name": "Action",
+                "slug": "action",
+                "icon": null,
+                "created_at": "2026-09-11T17:36:54.000000Z",
+                "updated_at": "2026-09-11T17:36:54.000000Z",
+                "pivot": {
+                    "game_id": 34,
+                    "genre_id": 1
+                }
+            },
+            {
+                "id": 2,
+                "name": "RPG",
+                "slug": "rpg",
+                "icon": null,
+                "created_at": "2026-09-11T17:36:54.000000Z",
+                "updated_at": "2026-09-11T17:36:54.000000Z",
+                "pivot": {
+                    "game_id": 34,
+                    "genre_id": 2
+                }
+            }
+        ],
+        "platforms": [
+            {
+                "id": 1,
+                "name": "PC",
+                "slug": "pc",
+                "icon": null,
+                "color": null,
+                "is_mobile": 0,
+                "is_active": 1,
+                "sort_order": 0,
+                "created_at": "2026-09-11T17:36:50.000000Z",
+                "updated_at": "2026-09-11T17:36:50.000000Z",
+                "pivot": {
+                    "game_id": 34,
+                    "platform_id": 1
+                }
+            },
+            {
+                "id": 2,
+                "name": "PlayStation 5",
+                "slug": "playstation-5",
+                "icon": null,
+                "color": null,
+                "is_mobile": 0,
+                "is_active": 1,
+                "sort_order": 0,
+                "created_at": "2026-09-11T17:36:50.000000Z",
+                "updated_at": "2026-09-11T17:36:50.000000Z",
+                "pivot": {
+                    "game_id": 34,
+                    "platform_id": 2
+                }
+            },
+            {
+                "id": 9,
+                "name": "Xbox Series S\/X",
+                "slug": "xbox-series-sx",
+                "icon": null,
+                "color": null,
+                "is_mobile": 0,
+                "is_active": 1,
+                "sort_order": 0,
+                "created_at": "2026-09-17T15:50:59.000000Z",
+                "updated_at": "2026-09-17T15:50:59.000000Z",
+                "pivot": {
+                    "game_id": 34,
+                    "platform_id": 9
+                }
+            }
+        ],
+        "release_date": "2026-08-04",
+        "rating": 3,
+        "average_rating": 3,
+        "players_count": 0,
+        "is_featured": false,
+        "is_trending": false,
+        "is_free": false,
+        "created_at": "2026-09-17"
+    },
+    {
+        "id": 33,
+        "slug": "mixtape",
+        "title": "Mixtape",
+        "name": "Mixtape",
+        "developer": null,
+        "publisher": null,
+        "cover_image": "https:\/\/media.rawg.io\/media\/games\/a57\/a571fcbc2b2ef30fb3e13a4272ef3a93.jpeg",
+        "cover_image_url": "https:\/\/media.rawg.io\/media\/games\/a57\/a571fcbc2b2ef30fb3e13a4272ef3a93.jpeg",
+        "background_image": "https:\/\/media.rawg.io\/media\/games\/a57\/a571fcbc2b2ef30fb3e13a4272ef3a93.jpeg",
+        "banner_image_url": "https:\/\/media.rawg.io\/media\/games\/a57\/a571fcbc2b2ef30fb3e13a4272ef3a93.jpeg",
+        "description": "An exciting game available on multiple platforms.",
+        "short_description": "A new game.",
+        "genres": [
+            {
+                "id": 10,
+                "name": "Adventure",
+                "slug": "adventure",
+                "icon": null,
+                "created_at": "2026-09-11T17:36:59.000000Z",
+                "updated_at": "2026-09-11T17:36:59.000000Z",
+                "pivot": {
+                    "game_id": 33,
+                    "genre_id": 10
+                }
+            }
+        ],
+        "platforms": [
+            {
+                "id": 1,
+                "name": "PC",
+                "slug": "pc",
+                "icon": null,
+                "color": null,
+                "is_mobile": 0,
+                "is_active": 1,
+                "sort_order": 0,
+                "created_at": "2026-09-11T17:36:50.000000Z",
+                "updated_at": "2026-09-11T17:36:50.000000Z",
+                "pivot": {
+                    "game_id": 33,
+                    "platform_id": 1
+                }
+            },
+            {
+                "id": 9,
+                "name": "Xbox Series S\/X",
+                "slug": "xbox-series-sx",
+                "icon": null,
+                "color": null,
+                "is_mobile": 0,
+                "is_active": 1,
+                "sort_order": 0,
+                "created_at": "2026-09-17T15:50:59.000000Z",
+                "updated_at": "2026-09-17T15:50:59.000000Z",
+                "pivot": {
+                    "game_id": 33,
+                    "platform_id": 9
+                }
+            }
+        ],
+        "release_date": "2026-05-07",
+        "rating": 4,
+        "average_rating": 4,
+        "players_count": 0,
+        "is_featured": false,
+        "is_trending": false,
+        "is_free": false,
+        "created_at": "2026-09-17"
+    }
+]

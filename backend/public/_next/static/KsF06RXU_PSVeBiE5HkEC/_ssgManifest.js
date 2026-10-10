@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fcall\u002F[roomId]","\u002Fgames\u002F[slug]","\u002Fgroups\u002F[slug]","\u002Fnews\u002F[slug]","\u002Fprofile\u002F[username]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

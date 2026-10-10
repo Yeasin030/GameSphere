@@ -2,4 +2,5 @@ kind: wasmer.io/App.v0
 name: gamesphere-frontend
 package: .
 owner: yeasinarafat5331
-app_id: da_n73IatAUWL5k
+app_id: da_R9EIBt1U5mAl
+command: script

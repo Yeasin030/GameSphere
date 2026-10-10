@@ -61,7 +61,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->fullText(['name', 'description', 'developer', 'publisher']);
+            // $table->fullText(['name', 'description', 'developer', 'publisher']);
             $table->index('is_featured');
             $table->index('is_trending');
             $table->index('is_free');

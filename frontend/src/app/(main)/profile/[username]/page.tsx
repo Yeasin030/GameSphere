@@ -109,7 +109,7 @@ export default function UserProfilePage({ params }: { params: { username: string
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4">
         <Loader2 className="w-10 h-10 text-accent-magenta animate-spin" />
-        <p className="text-foreground/60 text-sm font-medium">Loading @{params.username}'s profile...</p>
+        <p className="text-foreground/60 text-sm font-medium">Loading @{params.username}&apos;s profile...</p>
       </div>
     );
   }

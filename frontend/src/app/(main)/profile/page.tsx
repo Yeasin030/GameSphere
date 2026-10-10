@@ -427,7 +427,7 @@ export default function ProfilePage() {
 
                             {g.pivot?.notes && (
                               <p className="text-[11px] text-foreground/50 italic truncate pt-1">
-                                "{g.pivot.notes}"
+                                &quot;{g.pivot.notes}&quot;
                               </p>
                             )}
                           </div>

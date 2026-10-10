@@ -98,7 +98,7 @@ class StoryController extends Controller
             $mediaPath = $request->file('media')->store('stories', 'public');
         }
 
-        $user = $request->user('sanctum') ?? $request->user() ?? \App\Models\User::first();
+        $user = $request->user();
 
         $story = Story::create([
             'user_id'          => $user->id,

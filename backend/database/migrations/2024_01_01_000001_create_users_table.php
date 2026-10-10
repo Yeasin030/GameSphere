@@ -44,7 +44,7 @@ return new class extends Migration
             $table->index(['is_active', 'is_suspended']);
             $table->index('last_seen_at');
             $table->index('account_type');
-            $table->fullText(['username', 'display_name', 'bio']);
+            // $table->fullText(['username', 'display_name', 'bio']);
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

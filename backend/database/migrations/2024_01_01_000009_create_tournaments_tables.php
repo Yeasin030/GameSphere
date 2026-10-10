@@ -52,7 +52,7 @@ return new class extends Migration
             $table->index('game_id');
             $table->index('status');
             $table->index('starts_at');
-            $table->fullText(['name', 'description']);
+            // $table->fullText(['name', 'description']);
         });
 
         // Tournament registrations / participants

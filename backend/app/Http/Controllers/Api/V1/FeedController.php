@@ -20,7 +20,7 @@ class FeedController extends Controller
         return $request->user('sanctum')
             ?? $request->user() 
             ?? User::where('email', 'demo@gamesphere.com')->first() 
-            ?? User::first();
+            ;
     }
 
     private function formatResponse($feed): JsonResponse

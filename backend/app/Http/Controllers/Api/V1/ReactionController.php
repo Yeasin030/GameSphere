@@ -23,7 +23,7 @@ class ReactionController extends Controller
             'type' => ['required', 'string', 'in:like,love,wow,haha,sad,angry,fire,gaming'],
         ]);
 
-        $user = $request->user('sanctum') ?? $request->user() ?? \App\Models\User::where('email', 'demo@gamesphere.com')->first() ?? \App\Models\User::first();
+        $user = $request->user();
         $type = $request->type;
 
         $existing = \App\Models\PostReaction::where('user_id', $user->id)
@@ -58,7 +58,7 @@ class ReactionController extends Controller
      */
     public function unreactPost(Request $request, Post $post): JsonResponse
     {
-        $user = $request->user('sanctum') ?? $request->user() ?? \App\Models\User::where('email', 'demo@gamesphere.com')->first() ?? \App\Models\User::first();
+        $user = $request->user();
         $deleted = \App\Models\PostReaction::where('user_id', $user->id)
             ->where('post_id', $post->id)
             ->delete();

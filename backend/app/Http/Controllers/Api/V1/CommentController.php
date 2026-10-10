@@ -48,7 +48,7 @@ class CommentController extends Controller
             return response()->json(['message' => 'The content field is required.'], 422);
         }
 
-        $user = $request->user('sanctum') ?? $request->user() ?? \App\Models\User::where('email', 'demo@gamesphere.com')->first() ?? \App\Models\User::first();
+        $user = $request->user();
 
         $comment = $post->comments()->create([
             'user_id'   => $user->id,

@@ -1,5 +1,5 @@
 kind: wasmer.io/App.v0
-name: gamesphere-backend
+name: gamesphere
 package: .
 env:
   APP_ENV: "production"
@@ -8,10 +8,13 @@ env:
   DB_HOST: "db.fr-roub1.bengt.wasmernet.com"
   DB_PORT: "20184"
   DB_DATABASE: "gamesphere"
-  DB_USERNAME: "user_6b094611"
-  DB_PASSWORD: "pw_lyHvmqXf8UYlMasRioy4AV6MkORTfNoE"
+  DB_USERNAME: "user_1176a84d"
+  DB_PASSWORD: "pw_XXE0D1QXb3cIXCqhyYHW4aaoGodY3mgT"
   CACHE_DRIVER: "array"
   SESSION_DRIVER: "cookie"
   QUEUE_CONNECTION: "sync"
+  LOG_CHANNEL: "stderr"
+  VIEW_COMPILED_PATH: "/tmp"
 owner: yeasinarafat5331
-app_id: da_nP7IptBU3WOJ
+
+app_id: da_K53IxtPUOka6
